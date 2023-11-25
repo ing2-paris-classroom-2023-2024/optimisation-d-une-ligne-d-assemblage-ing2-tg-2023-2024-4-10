@@ -31,6 +31,12 @@ int main() {
     fclose(file);
 
     operation_algorithm(V, tj, n, T0);
+
     for (int op = 0; op < n; op++) {
         printf("Opération %d affectée à la station %d\n", op + 1, V[op]);
     }
+    free(V);
+    free(tj);
+
+    return 0;
+}
