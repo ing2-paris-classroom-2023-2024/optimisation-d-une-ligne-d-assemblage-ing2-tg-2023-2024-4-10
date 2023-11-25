@@ -19,3 +19,4 @@ int main() {
     for (int op = 0; op < n; op++) {
         fscanf(file, "%d %lf", &V[op], &tj[op]);
     }
+    fclose(file);
