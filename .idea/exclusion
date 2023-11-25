@@ -25,6 +25,8 @@ int main() {
 
     exclusion_algorithm(V, E, MAX_STATIONS, n);
 
+//problemes sur l'affichage
+
     for (int station = 0; station < MAX_STATIONS; station++) {
         printf("Station %d : ", station + 1);
         for (int op = 0; op < n; op++) {
