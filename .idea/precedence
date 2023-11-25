@@ -2,3 +2,10 @@
 #include <stdlib.h>
 
 void precedence_algorithm(int V[], int A[][2], int n);
+
+int main() {
+    FILE *file = fopen("precedences.txt", "r");
+    if (file == NULL) {
+        fprintf(stderr, "Erreur lors de l'ouverture du fichier precedences.txt\n");
+        return 1;
+    }
