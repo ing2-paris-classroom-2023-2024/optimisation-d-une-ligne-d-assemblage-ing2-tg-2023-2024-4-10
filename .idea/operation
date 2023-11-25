@@ -1,3 +1,4 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void operation_algorithm(int V[], double tj[], int n, double T0);
