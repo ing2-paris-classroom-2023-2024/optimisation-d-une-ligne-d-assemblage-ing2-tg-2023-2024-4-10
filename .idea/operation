@@ -9,3 +9,9 @@ int main() {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier operation.txt\n");
         return 1;
     }
+
+    int n;
+    fscanf(file, "%d", &n);
+
+    int *V = malloc(n * sizeof(int));
+    double *tj = malloc(n * sizeof(double));
