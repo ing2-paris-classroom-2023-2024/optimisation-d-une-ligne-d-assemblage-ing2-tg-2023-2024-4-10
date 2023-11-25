@@ -14,3 +14,9 @@ int main() {
 
     int V[n];
     int E[n][2];
+
+    for (int k = 0; k < n; k++) {
+        fscanf(file, "%d %d", &i, &j);
+        E[k][0] = i;
+        E[k][1] = j;
+    }
