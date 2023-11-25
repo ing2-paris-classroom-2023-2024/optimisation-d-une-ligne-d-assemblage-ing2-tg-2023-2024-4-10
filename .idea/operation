@@ -46,3 +46,4 @@ void operation_algorithm(int V[], double tj[], int n, double T0) {
     double temps_station = 0;
     for (int op = 0; op < n; op++) {
         V[op] = -1;
+    }
