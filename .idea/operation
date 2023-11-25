@@ -20,3 +20,7 @@ int main() {
         fscanf(file, "%d %lf", &V[op], &tj[op]);
     }
     fclose(file);
+
+   double T0;
+    file = fopen("temps_cycle.txt", "r");
+    if (file == NULL) {
