@@ -2,3 +2,10 @@
 #include <stdlib.h>
 
 void operation_algorithm(int V[], double tj[], int n, double T0);
+
+int main() {
+    FILE *file = fopen("operation.txt", "r");
+    if (file == NULL) {
+        fprintf(stderr, "Erreur lors de l'ouverture du fichier operation.txt\n");
+        return 1;
+    }
