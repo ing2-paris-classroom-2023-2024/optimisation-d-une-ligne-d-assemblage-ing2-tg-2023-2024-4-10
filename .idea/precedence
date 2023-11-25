@@ -26,3 +26,7 @@ int main() {
 
     int *V = malloc(n * sizeof(int));
     precedence_algorithm(V, A, n);
+
+    for (int op = 0; op < n; op++) {
+        printf("Opération %d affectée à la station %d\n", op + 1, V[op]);
+    }
