@@ -16,3 +16,9 @@ int main() {
 
     int (*A)[2] = malloc(n * sizeof(int[2]));
 
+    for (int k = 0; k < n; k++) {
+        fscanf(file, "%d %d", &i, &j);
+        A[k][0] = i;
+        A[k][1] = j;
+    }
+
