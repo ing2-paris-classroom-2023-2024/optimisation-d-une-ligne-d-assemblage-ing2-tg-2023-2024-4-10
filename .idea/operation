@@ -24,3 +24,6 @@ int main() {
    double T0;
     file = fopen("temps_cycle.txt", "r");
     if (file == NULL) {
+        fprintf(stderr, "Erreur lors de l'ouverture du fichier temps_cycle.txt\n");
+        return 1;
+    }
