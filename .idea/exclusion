@@ -22,3 +22,5 @@ int main() {
     }
 
     fclose(file);
+
+    exclusion_algorithm(V, E, MAX_STATIONS, n);
