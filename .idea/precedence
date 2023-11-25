@@ -45,3 +45,6 @@ void precedence_algorithm(int V[], int A[][2], int n) {
         V[op] = -1; // Opération non affectée
     }
 
+    for (int arc = 0; arc < n; arc++) {
+        int i = A[arc][0] - 1;
+        int j = A[arc][1] - 1;
