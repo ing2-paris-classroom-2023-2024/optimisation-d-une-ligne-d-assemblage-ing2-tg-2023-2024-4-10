@@ -15,3 +15,7 @@ int main() {
 
     int *V = malloc(n * sizeof(int));
     double *tj = malloc(n * sizeof(double));
+
+    for (int op = 0; op < n; op++) {
+        fscanf(file, "%d %lf", &V[op], &tj[op]);
+    }
