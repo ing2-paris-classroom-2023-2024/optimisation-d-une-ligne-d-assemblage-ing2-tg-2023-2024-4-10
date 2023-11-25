@@ -55,3 +55,6 @@ void operation_algorithm(int V[], double tj[], int n, double T0) {
             temps_station = tj[op];
             m++;
         }
+        V[op] = m;
+    }
+}
