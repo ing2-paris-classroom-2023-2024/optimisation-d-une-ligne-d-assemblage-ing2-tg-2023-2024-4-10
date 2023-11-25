@@ -52,4 +52,6 @@ void operation_algorithm(int V[], double tj[], int n, double T0) {
         if (temps_station + tj[op] <= T0) {
             temps_station += tj[op];
         } else {
-
+            temps_station = tj[op];
+            m++;
+        }
