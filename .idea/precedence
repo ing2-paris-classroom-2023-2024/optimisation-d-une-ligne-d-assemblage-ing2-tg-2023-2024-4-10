@@ -51,3 +51,8 @@ void precedence_algorithm(int V[], int A[][2], int n) {
 
         int station_i = V[i];
         int station_j = V[j];
+
+        if (station_i == -1) {
+            station_i = m++;
+            V[i] = station_i;
+        }
