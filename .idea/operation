@@ -30,4 +30,4 @@ int main() {
     fscanf(file, "%lf", &T0);
     fclose(file);
 
-    operation_algorithm(tj, V, n, T0);
+    operation_algorithm(V, tj, n, T0);
