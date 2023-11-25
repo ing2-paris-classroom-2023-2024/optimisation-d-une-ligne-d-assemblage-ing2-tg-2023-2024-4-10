@@ -1,1 +1,4 @@
+#include <stdio.h>
+#include <stdlib.h>
 
+void precedence_algorithm(int V[], int A[][2], int n);
