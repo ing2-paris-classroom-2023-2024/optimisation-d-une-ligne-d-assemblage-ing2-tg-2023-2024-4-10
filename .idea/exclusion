@@ -24,3 +24,13 @@ int main() {
     fclose(file);
 
     exclusion_algorithm(V, E, MAX_STATIONS, n);
+
+    for (int station = 0; station < MAX_STATIONS; station++) {
+        printf("Station %d : ", station + 1);
+        for (int op = 0; op < n; op++) {
+            if (V[op] == station + 1) {
+                printf("%d ", op + 1);
+            }
+        }
+        printf("\n");
+    }
