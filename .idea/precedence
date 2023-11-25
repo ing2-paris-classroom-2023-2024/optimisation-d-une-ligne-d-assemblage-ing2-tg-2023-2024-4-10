@@ -9,3 +9,10 @@ int main() {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier precedences.txt\n");
         return 1;
     }
+
+   
+    int n, i, j;
+    fscanf(file, "%d", &n);
+
+    int (*A)[2] = malloc(n * sizeof(int[2]));
+
