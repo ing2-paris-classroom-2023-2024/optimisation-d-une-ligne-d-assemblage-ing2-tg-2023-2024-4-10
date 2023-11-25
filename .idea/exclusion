@@ -9,3 +9,8 @@ int main() {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier exclusion.txt\n");
         return 1;
     }
+    int n, i, j;
+    fscanf(file, "%d", &n);
+
+    int V[n];
+    int E[n][2];
