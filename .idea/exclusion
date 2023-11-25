@@ -2,3 +2,10 @@
 #include <stdlib.h>
 
 #define MAX_STATIONS 100
+
+int main() {
+    FILE *file = fopen("exclusion.txt", "r");
+    if (file == NULL) {
+        fprintf(stderr, "Erreur lors de l'ouverture du fichier exclusion.txt\n");
+        return 1;
+    }
