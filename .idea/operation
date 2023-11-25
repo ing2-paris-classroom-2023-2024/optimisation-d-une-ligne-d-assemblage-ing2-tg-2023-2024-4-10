@@ -40,3 +40,7 @@ int main() {
 
     return 0;
 }
+
+void operation_algorithm(int V[], double tj[], int n, double T0) {
+    int m = 1; // Nombre initial de stations
+    double temps_station = 0;
