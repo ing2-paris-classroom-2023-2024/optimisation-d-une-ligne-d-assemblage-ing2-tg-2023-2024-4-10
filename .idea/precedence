@@ -40,3 +40,8 @@ int main() {
 void precedence_algorithm(int V[], int A[][2], int n) {
     int m = 1; // Nombre initial de stations
     int station;
+
+    for (int op = 0; op < n; op++) {
+        V[op] = -1; // Opération non affectée
+    }
+
