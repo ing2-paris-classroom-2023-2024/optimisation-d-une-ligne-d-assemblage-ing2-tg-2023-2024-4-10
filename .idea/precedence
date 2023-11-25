@@ -23,3 +23,6 @@ int main() {
     }
 
     fclose(file);
+
+    int *V = malloc(n * sizeof(int));
+    precedence_algorithm(V, A, n);
