@@ -60,3 +60,6 @@ int main() {
 
     int n_operation;
     fscanf(file_operation, "%d", &n_operation);
+
+    int *V_operation = malloc(n_operation * sizeof(int));
+    double *tj = malloc(n_operation * sizeof(double));
