@@ -19,4 +19,8 @@ int main() {
 
     int (*E)[2] = malloc(n_exclusion * sizeof(int[2]));
 
-
+    for (int k = 0; k < n_exclusion; k++) {
+        fscanf(file_exclusion, "%d %d", &i, &j);
+        E[k][0] = i;
+        E[k][1] = j;
+    }
