@@ -96,3 +96,10 @@ int main() {
 
     return 0;
 }
+
+void print_results(int V[], int n) {
+    printf("Répartition des opérations par station :\n");
+    for (int op = 0; op < n; op++) {
+        printf("Opération %d affectée à la station %d\n", op + 1, V[op]);
+    }
+}
