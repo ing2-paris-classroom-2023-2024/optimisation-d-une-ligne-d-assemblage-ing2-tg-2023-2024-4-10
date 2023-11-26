@@ -92,3 +92,4 @@ int main() {
         if (k < n_precedence) V_final[k] = V_precedence[k];
         if (k < n_operation) V_final[k] = V_operation[k];
     }
+    print_results(V_final, n_max);
