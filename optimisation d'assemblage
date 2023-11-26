@@ -24,3 +24,5 @@ int main() {
         E[k][0] = i;
         E[k][1] = j;
     }
+
+    fclose(file_exclusion);
