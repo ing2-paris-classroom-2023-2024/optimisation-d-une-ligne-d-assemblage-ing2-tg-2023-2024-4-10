@@ -46,3 +46,5 @@ int main() {
         A[k][0] = i;
         A[k][1] = j;
     }
+
+    fclose(file_precedence);
