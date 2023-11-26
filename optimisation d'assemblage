@@ -78,3 +78,5 @@ int main() {
     }
     fscanf(file_temps_cycle, "%lf", &T0);
     fclose(file_temps_cycle);
+
+    operation_algorithm(V_operation, tj, n_operation, T0);
