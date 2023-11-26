@@ -76,3 +76,5 @@ int main() {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier temps_cycle.txt\n");
         return 1;
     }
+    fscanf(file_temps_cycle, "%lf", &T0);
+    fclose(file_temps_cycle);
