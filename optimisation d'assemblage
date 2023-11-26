@@ -63,3 +63,9 @@ int main() {
 
     int *V_operation = malloc(n_operation * sizeof(int));
     double *tj = malloc(n_operation * sizeof(double));
+
+    for (int k = 0; k < n_operation; k++) {
+        fscanf(file_operation, "%d %lf", &i, &tj[k]);
+    }
+
+    fclose(file_operation);
