@@ -35,3 +35,8 @@ int main() {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier precedences.txt\n");
         return 1;
     }
+
+    int n_precedence;
+    fscanf(file_precedence, "%d", &n_precedence);
+
+    int (*A)[2] = malloc(n_precedence * sizeof(int[2]));
