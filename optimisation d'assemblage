@@ -40,3 +40,9 @@ int main() {
     fscanf(file_precedence, "%d", &n_precedence);
 
     int (*A)[2] = malloc(n_precedence * sizeof(int[2]));
+
+    for (int k = 0; k < n_precedence; k++) {
+        fscanf(file_precedence, "%d %d", &i, &j);
+        A[k][0] = i;
+        A[k][1] = j;
+    }
