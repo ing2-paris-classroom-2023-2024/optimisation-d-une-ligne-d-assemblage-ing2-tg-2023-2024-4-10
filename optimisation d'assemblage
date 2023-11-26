@@ -48,3 +48,6 @@ int main() {
     }
 
     fclose(file_precedence);
+
+    int *V_precedence = malloc(n_precedence * sizeof(int));
+    precedence_algorithm(V_precedence, A, n_precedence);
