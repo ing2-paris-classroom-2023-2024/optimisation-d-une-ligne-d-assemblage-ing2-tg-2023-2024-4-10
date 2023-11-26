@@ -84,3 +84,11 @@ int main() {
     int n_max = n_exclusion;
     if (n_precedence > n_max) n_max = n_precedence;
     if (n_operation > n_max) n_max = n_operation;
+
+    int *V_final = malloc(n_max * sizeof(int));
+
+    for (int k = 0; k < n_max; k++) {
+        if (k < n_exclusion) V_final[k] = V_exclusion[k];
+        if (k < n_precedence) V_final[k] = V_precedence[k];
+        if (k < n_operation) V_final[k] = V_operation[k];
+    }
