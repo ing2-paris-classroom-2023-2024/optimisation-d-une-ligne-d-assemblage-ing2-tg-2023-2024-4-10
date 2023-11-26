@@ -16,3 +16,7 @@ int main() {
 
     int n_exclusion, i, j;
     fscanf(file_exclusion, "%d", &n_exclusion);
+
+    int (*E)[2] = malloc(n_exclusion * sizeof(int[2]));
+
+
