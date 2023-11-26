@@ -29,3 +29,9 @@ int main() {
 
     int *V_exclusion = malloc(n_exclusion * sizeof(int));
     exclusion_algorithm(V_exclusion, E, n_exclusion);
+
+    FILE *file_precedence = fopen("precedences.txt", "r");
+    if (file_precedence == NULL) {
+        fprintf(stderr, "Erreur lors de l'ouverture du fichier precedences.txt\n");
+        return 1;
+    }
