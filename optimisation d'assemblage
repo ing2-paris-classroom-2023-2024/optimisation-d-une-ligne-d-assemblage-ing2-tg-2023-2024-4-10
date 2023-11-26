@@ -93,3 +93,6 @@ int main() {
         if (k < n_operation) V_final[k] = V_operation[k];
     }
     print_results(V_final, n_max);
+
+    return 0;
+}
