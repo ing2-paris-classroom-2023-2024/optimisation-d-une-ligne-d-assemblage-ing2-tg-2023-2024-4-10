@@ -13,3 +13,6 @@ int main() {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier exclusion.txt\n");
         return 1;
     }
+
+    int n_exclusion, i, j;
+    fscanf(file_exclusion, "%d", &n_exclusion);
