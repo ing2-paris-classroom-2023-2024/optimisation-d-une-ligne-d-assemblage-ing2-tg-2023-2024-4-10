@@ -80,3 +80,7 @@ int main() {
     fclose(file_temps_cycle);
 
     operation_algorithm(V_operation, tj, n_operation, T0);
+
+    int n_max = n_exclusion;
+    if (n_precedence > n_max) n_max = n_precedence;
+    if (n_operation > n_max) n_max = n_operation;
