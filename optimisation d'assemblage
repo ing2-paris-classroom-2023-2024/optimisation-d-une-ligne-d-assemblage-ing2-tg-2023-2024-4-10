@@ -51,3 +51,9 @@ int main() {
 
     int *V_precedence = malloc(n_precedence * sizeof(int));
     precedence_algorithm(V_precedence, A, n_precedence);
+
+    FILE *file_operation = fopen("operation.txt", "r");
+    if (file_operation == NULL) {
+        fprintf(stderr, "Erreur lors de l'ouverture du fichier operation.txt\n");
+        return 1;
+    }
