@@ -69,3 +69,10 @@ int main() {
     }
 
     fclose(file_operation);
+
+    double T0;
+    FILE *file_temps_cycle = fopen("temps_cycle.txt", "r");
+    if (file_temps_cycle == NULL) {
+        fprintf(stderr, "Erreur lors de l'ouverture du fichier temps_cycle.txt\n");
+        return 1;
+    }
