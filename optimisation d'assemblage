@@ -57,3 +57,6 @@ int main() {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier operation.txt\n");
         return 1;
     }
+
+    int n_operation;
+    fscanf(file_operation, "%d", &n_operation);
