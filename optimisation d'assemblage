@@ -7,7 +7,6 @@ void operation_algorithm(int V[], double tj[], int n, double T0);
 void print_results(int V[], int n);
 
 int main() {
-
     FILE *file_exclusion = fopen("exclusion.txt", "r");
     if (file_exclusion == NULL) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier exclusion.txt\n");
