@@ -248,3 +248,71 @@ int is_enemy(Exclusion const *const exclusions, int const nb_exclusions, Op cons
 
 	return 0;
 }
+
+double current_time(Station const *const station, Duration const *const durations, int const nb_durations)
+{
+	double time = 0.0;
+
+	for (int i = 0; i < station->Nb_Ops; i++)
+	{
+		Op op = station->Ops[i];
+
+		for (int j = 0; j < nb_durations; j++)
+		{
+			Duration duration = durations[j];
+
+			if (duration.Op == op)
+			{
+				time += duration.Duration;
+				break;
+			}
+		}
+	}
+
+	return time;
+}
+
+
+void optimize_exclusions(Station *stations, int *nb_stations, Op const *const ops, int const nb_ops, Exclusion const *const excls, int const nb_excls)
+{
+	*nb_stations = 0;
+
+	for (int iop = 0; iop < nb_ops; iop++)
+	{
+		Op op = ops[iop];
+		int found = 0;
+		int sidx = 0;
+
+		while (!found)
+		{
+			int has_enemy = 0;
+
+			for (int jop = 0; jop < stations[sidx].Nb_Ops; jop++)
+			{
+				Op other_op = stations[sidx].Ops[jop];
+
+				if (is_enemy(excls, nb_excls, op, other_op))
+				{
+					has_enemy = 1;
+					break;
+				}
+			}
+
+			if (!has_enemy)
+			{
+				stations[sidx].Ops[stations[sidx].Nb_Ops] = op;
+				stations[sidx].Nb_Ops++;
+				found = 1; /* !! */
+
+				if (sidx == *nb_stations)
+				{
+					(*nb_stations)++;
+				}
+			}
+			else
+			{
+				sidx++;
+			}
+		}
+	}
+}
