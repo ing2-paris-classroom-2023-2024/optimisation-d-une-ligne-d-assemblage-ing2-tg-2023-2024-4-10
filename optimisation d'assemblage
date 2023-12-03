@@ -1,3 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+#define PATH_PRECEDENCE "./precedences.txt"
+#define PATH_EXCLUSION "./exclusions.txt"
+#define PATH_OPERATION "./operations.txt"
+#define PATH_CYCLE "./temps_cycle.txt"
