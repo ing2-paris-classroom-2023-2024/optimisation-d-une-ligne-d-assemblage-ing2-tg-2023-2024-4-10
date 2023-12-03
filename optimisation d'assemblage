@@ -141,3 +141,26 @@ int read_exclusions(char const *const path, Exclusion *exclusions, int *nb_exclu
 	fclose(file);
 	return 0;
 }
+
+int read_precedences(char const *const path, Precedence *precedences, int *nb_precedences)
+{
+	FILE *file = fopen(path, "r");
+	if (file == NULL)
+	{
+		printf("Error while opening file %s\n", path);
+		return 1;
+	}
+
+	Op Op1, Op2;
+	int i = 0;
+	while (fscanf(file, "%d %d", &Op1, &Op2) != EOF)
+	{
+		precedences[i].Op1 = Op1;
+		precedences[i].Op2 = Op2;
+		i++;
+	}
+
+	*nb_precedences = i;
+	fclose(file);
+	return 0;
+}
