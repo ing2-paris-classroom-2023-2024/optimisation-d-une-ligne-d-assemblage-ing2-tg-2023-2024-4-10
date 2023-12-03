@@ -6,3 +6,51 @@
 #define PATH_EXCLUSION "./exclusions.txt"
 #define PATH_OPERATION "./operations.txt"
 #define PATH_CYCLE "./temps_cycle.txt"
+#define MAX_SIZE 100
+
+typedef int Op;
+
+typedef struct
+{
+	Op Op1;
+	Op Op2;
+} Exclusion;
+
+typedef struct
+{
+	Op Op1;
+	Op Op2;
+} Precedence;
+
+typedef struct
+{
+	Op Op;
+	double Duration;
+} Duration;
+
+typedef struct
+{
+	Op Ops[MAX_SIZE];
+	int Nb_Ops;
+} Station;
+
+
+struct Node
+{
+	Op vertex;
+	struct Node *next;
+};
+
+typedef struct
+{
+	int numVertices;
+	struct Node **adjLists;
+} Graph;
+
+
+struct queue
+{
+	Op items[MAX_SIZE];
+	Op front;
+	Op rear;
+};
