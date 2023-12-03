@@ -562,3 +562,50 @@ void assign_station(Station *stations, int *nb_stations, Graph *graph, Duration 
 
 	*nb_stations = stidx + 1;
 }
+
+int main()
+{
+	Exclusion exclusions[MAX_SIZE];
+	int nb_exclusions;
+	read_exclusions(PATH_EXCLUSION, exclusions, &nb_exclusions);
+
+	Precedence precedences[MAX_SIZE];
+	int nb_precedences;
+	read_precedences(PATH_PRECEDENCE, precedences, &nb_precedences);
+
+	Duration durations[MAX_SIZE];
+	int nb_durations;
+	read_durations(PATH_OPERATION, durations, &nb_durations);
+
+	Op operations[MAX_SIZE];
+	int nb_operations = nb_durations;
+	for (int i = 0; i < nb_durations; i++)
+	{
+		operations[i] = durations[i].Op;
+	}
+
+	int cycle;
+	read_cycle(PATH_CYCLE, &cycle);
+
+	Station stations[MAX_SIZE];
+	int nb_stations;
+	optimize_exclusions(stations, &nb_stations, operations, nb_operations, exclusions, nb_exclusions);
+
+	printf("En tenant compte des exclusions\n");
+	print_stations(stations, nb_stations);
+	printf("\n");
+
+	Graph *graph = build_graph(operations, nb_operations, precedences, &nb_precedences);
+	//print_graph(graph);
+
+	memset(stations, 0, sizeof(Station) * MAX_SIZE);
+	nb_stations = 0;
+
+	assign_station(stations, &nb_stations, graph, durations, &nb_durations, cycle, operations, nb_operations);
+	
+	printf("En tenant compte des precedences et temps de cycles\n");
+	print_stations(stations, nb_stations);
+	printf("\n");
+	
+	return 0;
+}
