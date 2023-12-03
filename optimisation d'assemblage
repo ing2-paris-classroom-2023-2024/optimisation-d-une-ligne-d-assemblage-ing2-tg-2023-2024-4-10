@@ -316,3 +316,43 @@ void optimize_exclusions(Station *stations, int *nb_stations, Op const *const op
 		}
 	}
 }
+
+Graph *build_graph(Op const *const ops, int const nb_ops, Precedence *precedences, int *nb_precedences)
+{
+	Graph *graph = malloc(sizeof(Graph));
+	graph->numVertices = nb_ops;
+	graph->adjLists = malloc(nb_ops * sizeof(struct Node *));
+
+	for (int iop = 0; iop < nb_ops; iop++)
+	{
+		struct Node *head = malloc(sizeof(struct Node));
+		head->vertex = ops[iop];
+		head->next = NULL;
+		graph->adjLists[iop] = head;
+
+		for (int ip = 0; ip < *nb_precedences; ip++)
+		{
+			Precedence precedence = precedences[ip];
+			Op op1 = precedence.Op1;
+			Op op2 = precedence.Op2;
+
+			if (op1 == ops[iop])
+			{
+				struct Node *node = malloc(sizeof(struct Node));
+				node->vertex = op2;
+				node->next = NULL;
+
+				for (struct Node *temp = head; temp != NULL; temp = temp->next)
+				{
+					if (temp->next == NULL)
+					{
+						temp->next = node;
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	return graph;
+}
