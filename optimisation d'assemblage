@@ -419,3 +419,58 @@ void clean_graph(Graph *graph)
 	free(graph->adjLists);
 	free(graph);
 }
+
+void find_roots(Graph *graph, struct Node **roots, int *nb_roots)
+{
+	*nb_roots = 0;
+
+	for (int i = 0; i < graph->numVertices; i++)
+	{
+		struct Node *temp = graph->adjLists[i];
+		int is_root = 1;
+
+		for (int j = 0; j < graph->numVertices; j++)
+		{
+			if (is_edge(graph, graph->adjLists[j]->vertex, temp->vertex))
+			{
+				is_root = 0;
+				break;
+			}
+		}
+
+		if (is_root)
+		{
+			roots[*nb_roots] = temp;
+			(*nb_roots)++;
+		}
+	}
+}
+
+int find_station(Station *stations, int *nb_stations, int from_idx, int max_time, Duration *durations, int *nb_durations, Op op, Op const *const ops, int const nb_ops)
+{
+	double duration = 0.0;
+
+	for (int i = 0; i < *nb_durations; i++)
+	{
+		if (durations[i].Op == op)
+		{
+			duration = durations[i].Duration;
+			break;
+		}
+	}
+
+	for (int i = from_idx; i < *nb_stations; i++)
+	{
+		double cur_time = current_time(&stations[i], durations, *nb_durations);
+		double new_time = cur_time + duration;
+
+		if (new_time > max_time)
+		{
+			continue;
+		}
+
+		return i;
+	}
+
+	return -1;
+}
