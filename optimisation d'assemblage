@@ -85,3 +85,37 @@ void enqueue(struct queue *q, int value)
 		q->items[q->rear] = value;
 	}
 }
+
+Op dequeue(struct queue *q)
+{
+	Op item;
+	if (is_empty(q))
+	{
+		item = -1;
+	}
+	else
+	{
+		item = q->items[q->front];
+		q->front++;
+
+		if (q->front > q->rear)
+		{
+			q->front = q->rear = -1;
+		}
+	}
+	return item;
+}
+
+
+void print_stations(Station const *const stations, int const nb_stations)
+{
+	for (int i = 0; i < nb_stations; i++)
+	{
+		printf("Station %d : ", i);
+		for (int j = 0; j < stations[i].Nb_Ops; j++)
+		{
+			printf("%d ", stations[i].Ops[j]);
+		}
+		printf("\n");
+	}
+}
