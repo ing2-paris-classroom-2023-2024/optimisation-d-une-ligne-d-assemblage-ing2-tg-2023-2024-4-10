@@ -474,3 +474,91 @@ int find_station(Station *stations, int *nb_stations, int from_idx, int max_time
 
 	return -1;
 }
+
+int can_add(Station station, int max_time, Duration *durations, int *nb_durations, Op op, Op const *const ops, int const nb_ops)
+{
+	double duration = 0.0;
+
+	for (int i = 0; i < *nb_durations; i++)
+	{
+		if (durations[i].Op == op)
+		{
+			duration = durations[i].Duration;
+			break;
+		}
+	}
+
+	double cur_time = current_time(&station, durations, *nb_durations);
+	double new_time = cur_time + duration;
+
+	if (new_time > max_time)
+	{
+		return 0;
+	}
+
+	return 1;
+}
+
+void assign_station(Station *stations, int *nb_stations, Graph *graph, Duration *durations, int *nb_durations, int max_time, Op const *const ops, int const nb_ops)
+{
+	struct Node *roots[MAX_SIZE] = {NULL};
+	int nb_roots = 0;
+	find_roots(graph, roots, &nb_roots);
+
+	int stidx = 0;
+
+	struct queue *q = create_queue();
+	int visited[MAX_SIZE] = {0};
+
+	for (int i = 0; i < nb_roots; i++)
+	{
+		struct Node *root = roots[i];
+		enqueue(q, root->vertex);
+		visited[root->vertex] = 1;
+
+		// if ( ! can_add( stations[ stidx ], max_time, durations, nb_durations, root->vertex, ops, nb_ops ) )
+		// {
+		//     stidx++;
+		// }
+
+		// stations[ stidx ].Ops[ stations[ stidx ].Nb_Ops ] = root->vertex;
+		// stations[ stidx ].Nb_Ops++;
+	}
+
+	while (!is_empty(q))
+	{
+		Op op = dequeue(q);
+
+		for (int i = 0; i < graph->numVertices; i++)
+		{
+			struct Node *temp = graph->adjLists[i];
+
+			if (temp->vertex == op)
+			{
+				if (!can_add(stations[stidx], max_time, durations, nb_durations, op, ops, nb_ops))
+				{
+					stidx++;
+				}
+
+				stations[stidx].Ops[stations[stidx].Nb_Ops] = op;
+				stations[stidx].Nb_Ops++;
+
+				while (temp->next != NULL)
+				{
+					temp = temp->next;
+					int other_op = temp->vertex;
+
+					if (!visited[other_op])
+					{
+						enqueue(q, other_op);
+						visited[other_op] = 1;
+					}
+				}
+
+				break;
+			}
+		}
+	}
+
+	*nb_stations = stidx + 1;
+}
