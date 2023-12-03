@@ -356,3 +356,66 @@ Graph *build_graph(Op const *const ops, int const nb_ops, Precedence *precedence
 
 	return graph;
 }
+
+int is_edge(Graph *graph, Op const op1, Op const op2)
+{
+	for (int i = 0; i < graph->numVertices; i++)
+	{
+		struct Node *temp = graph->adjLists[i];
+
+		if (temp->vertex == op1)
+		{
+			while (temp->next != NULL)
+			{
+				temp = temp->next;
+
+				if (temp->vertex == op2)
+				{
+					return 1;
+				}
+			}
+
+			return 0;
+		}
+	}
+
+	return 0;
+}
+
+void print_graph(Graph *graph)
+{
+	for (int i = 0; i < graph->numVertices; i++)
+	{
+		struct Node *temp = graph->adjLists[i];
+
+		printf("%d : ", temp->vertex);
+
+		while (temp->next != NULL)
+		{
+			temp = temp->next;
+			printf("%d ", temp->vertex);
+		}
+
+		printf("\n");
+	}
+}
+
+void clean_graph(Graph *graph)
+{
+	for (int i = 0; i < graph->numVertices; i++)
+	{
+		struct Node *temp = graph->adjLists[i];
+
+		while (temp->next != NULL)
+		{
+			struct Node *next = temp->next;
+			free(temp);
+			temp = next;
+		}
+
+		free(temp);
+	}
+
+	free(graph->adjLists);
+	free(graph);
+}
