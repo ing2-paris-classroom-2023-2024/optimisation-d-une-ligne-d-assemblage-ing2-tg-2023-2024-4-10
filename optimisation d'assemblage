@@ -106,7 +106,6 @@ Op dequeue(struct queue *q)
 	return item;
 }
 
-
 void print_stations(Station const *const stations, int const nb_stations)
 {
 	for (int i = 0; i < nb_stations; i++)
@@ -119,6 +118,7 @@ void print_stations(Station const *const stations, int const nb_stations)
 		printf("\n");
 	}
 }
+
 int read_exclusions(char const *const path, Exclusion *exclusions, int *nb_exclusions)
 {
 	FILE *file = fopen(path, "r");
@@ -163,4 +163,44 @@ int read_precedences(char const *const path, Precedence *precedences, int *nb_pr
 	*nb_precedences = i;
 	fclose(file);
 	return 0;
+}
+
+int read_durations(char const *const path, Duration *durations, int *nb_durations)
+{
+	FILE *file = fopen(path, "r");
+	if (file == NULL)
+	{
+		printf("Error while opening file %s\n", path);
+		return 1;
+	}
+
+	Op Op;
+	double duration;
+	int i = 0;
+	while (fscanf(file, "%d %lf", &Op, &duration) != EOF)
+	{
+		durations[i].Op = Op;
+		durations[i].Duration = duration;
+		i++;
+	}
+
+	*nb_durations = i;
+	fclose(file);
+	return 0;
+}
+
+int read_cycle(char const *const path, int *cycle)
+{
+	FILE *file = fopen(path, "r");
+	if (file == NULL)
+	{
+		printf("Error while opening file %s\n", path);
+		return 1;
+	}
+
+	int c;
+	fscanf(file, "%d", &c);
+	*cycle = c;
+	fclose(file);
+	return 0;
 }
