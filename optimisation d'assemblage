@@ -119,3 +119,25 @@ void print_stations(Station const *const stations, int const nb_stations)
 		printf("\n");
 	}
 }
+int read_exclusions(char const *const path, Exclusion *exclusions, int *nb_exclusions)
+{
+	FILE *file = fopen(path, "r");
+	if (file == NULL)
+	{
+		printf("Error while opening file %s\n", path);
+		return 1;
+	}
+
+	Op Op1, Op2;
+	int i = 0;
+	while (fscanf(file, "%d %d", &Op1, &Op2) != EOF)
+	{
+		exclusions[i].Op1 = Op1;
+		exclusions[i].Op2 = Op2;
+		i++;
+	}
+
+	*nb_exclusions = i;
+	fclose(file);
+	return 0;
+}
