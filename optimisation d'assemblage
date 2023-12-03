@@ -204,3 +204,47 @@ int read_cycle(char const *const path, int *cycle)
 	fclose(file);
 	return 0;
 }
+
+int is_op_in_station(Station const *const station, Op const op)
+{
+	for (int i = 0; i < station->Nb_Ops; i++)
+	{
+		if (station->Ops[i] == op)
+		{
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
+Op get_other_op(Exclusion const *const excl, Op const op)
+{
+	if (excl->Op1 == op)
+	{
+		return excl->Op2;
+	}
+	else if (excl->Op2 == op)
+	{
+		return excl->Op1;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+int is_enemy(Exclusion const *const exclusions, int const nb_exclusions, Op const op1, Op const op2)
+{
+	for (int i = 0; i < nb_exclusions; i++)
+	{
+		Exclusion excl = exclusions[i];
+
+		if ((excl.Op1 == op1 && excl.Op2 == op2) || (excl.Op1 == op2 && excl.Op2 == op1))
+		{
+			return 1;
+		}
+	}
+
+	return 0;
+}
